@@ -1,8 +1,5 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, ShoppingCart, Wrench } from "lucide-react";
-import { motion } from "framer-motion";
 
 const pillars = [
   {
@@ -19,7 +16,6 @@ const pillars = [
     ],
     href: "/equipment",
     linkLabel: "查看在售设备",
-    accent: "blue",
   },
   {
     icon: Wrench,
@@ -35,25 +31,14 @@ const pillars = [
     ],
     href: "/services",
     linkLabel: "了解服务项目",
-    accent: "slate",
   },
 ];
 
 export default function BusinessSection() {
   return (
-    <section
-      className="py-24 bg-[#080810]"
-      aria-labelledby="business-heading"
-    >
+    <section className="py-24 bg-[#080810]" aria-labelledby="business-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-14"
-        >
+        <div className="mb-14">
           <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-3">
             核心业务
           </p>
@@ -63,26 +48,16 @@ export default function BusinessSection() {
           >
             交易与服务，覆盖设备全生命周期
           </h2>
-        </motion.div>
+        </div>
 
-        {/* Two pillars */}
         <div className="grid md:grid-cols-2 gap-6">
-          {pillars.map((pillar, i) => {
+          {pillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
-              <motion.div
+              <div
                 key={pillar.tag}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1],
-                  delay: i * 0.1,
-                }}
                 className="flex flex-col bg-[#111118] border border-white/[0.06] rounded-2xl p-8 hover:border-white/[0.10] transition-colors"
               >
-                {/* Icon + tag */}
                 <div className="flex items-center gap-3 mb-6">
                   <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20">
                     <Icon size={20} className="text-blue-400" />
@@ -99,31 +74,23 @@ export default function BusinessSection() {
                   {pillar.description}
                 </p>
 
-                {/* Highlights */}
                 <ul className="space-y-2 mb-8">
                   {pillar.highlights.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-2.5 text-sm text-[#a0a0b0]"
-                    >
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-[#a0a0b0]">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
                       {item}
                     </li>
                   ))}
                 </ul>
 
-                {/* Link */}
                 <Link
                   href={pillar.href}
                   className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors group"
                 >
                   {pillar.linkLabel}
-                  <ArrowRight
-                    size={14}
-                    className="group-hover:translate-x-0.5 transition-transform"
-                  />
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                 </Link>
-              </motion.div>
+              </div>
             );
           })}
         </div>

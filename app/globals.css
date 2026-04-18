@@ -153,6 +153,14 @@
   }
 }
 
+@layer base {
+  /* Native select dark background for Windows/Linux */
+  select option {
+    background-color: #111118;
+    color: #a0a0b0;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
