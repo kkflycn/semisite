@@ -39,7 +39,7 @@ export default function HeroSection() {
         <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#0a0a0f] to-transparent" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
           {/* ── Left: copy ── */}

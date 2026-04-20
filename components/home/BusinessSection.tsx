@@ -39,7 +39,7 @@ const pillars = [
 
 export default function BusinessSection() {
   return (
-    <section className="py-24 bg-[#080810]" aria-labelledby="business-heading">
+    <section className="pt-14 pb-24 bg-[#080810]" aria-labelledby="business-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn className="mb-14">
           <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-3">
