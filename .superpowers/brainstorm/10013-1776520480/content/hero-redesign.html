@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero 首屏改版方案</title>
+<script src="http://localhost:63214/helper.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0f; font-family: system-ui, -apple-system, sans-serif; color: #fff; padding: 24px; }
+  h1 { font-size: 15px; font-weight: 600; color: #a0a0b0; margin-bottom: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .subtitle { font-size: 12px; color: #606070; margin-bottom: 24px; }
+
+  .options { display: flex; flex-direction: column; gap: 16px; }
+  .option {
+    display: flex; gap: 0; border: 1px solid #222230; border-radius: 12px; overflow: hidden;
+    cursor: pointer; transition: border-color 0.2s;
+  }
+  .option:hover { border-color: #3b4aff55; }
+  .option.selected { border-color: #3b82f6; }
+  .option .letter {
+    width: 40px; background: #111118; display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 14px; font-size: 11px; font-weight: 700; color: #404050; flex-shrink: 0;
+  }
+  .option.selected .letter { color: #3b82f6; }
+  .option .preview { flex: 1; }
+  .option .desc { padding: 12px 16px; background: #111118; border-top: 1px solid #1a1a2e; }
+  .option .desc strong { font-size: 12px; color: #e0e0f0; display: block; margin-bottom: 4px; }
+  .option .desc p { font-size: 11px; color: #606070; line-height: 1.6; }
+
+  /* ─── Mock hero styles ─── */
+  .hero {
+    padding: 48px 40px 40px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .hero::after {
+    content: ''; position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 280px;
+    background: radial-gradient(ellipse, rgba(37,99,235,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.02em;
+    background: rgba(37,99,235,0.1); color: #60a5fa;
+    border: 1px solid rgba(59,130,246,0.25); margin-bottom: 16px;
+  }
+  .chip-dot { width: 5px; height: 5px; border-radius: 50%; background: #60a5fa; }
+
+  .h1-a { font-size: 28px; font-weight: 700; line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .h1-b { font-size: 26px; font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .h1-c { font-size: 22px; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .grad { background: linear-gradient(90deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .body-text { font-size: 11px; color: #a0a0b0; line-height: 1.75; max-width: 340px; margin-bottom: 18px; }
+  .body-text-sm { font-size: 10px; color: #808090; line-height: 1.7; max-width: 300px; margin-bottom: 14px; }
+
+  .btns { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .btn-primary { padding: 7px 16px; background: #2563eb; color: #fff; border-radius: 7px; font-size: 11px; font-weight: 500; }
+  .btn-outline { padding: 7px 14px; border: 1px solid rgba(255,255,255,0.12); color: #a0a0b0; border-radius: 7px; font-size: 11px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 14px; }
+  .stat-val { font-size: 18px; font-weight: 700; color: #fff; }
+  .stat-label { font-size: 9px; color: #606070; margin-top: 1px; }
+
+  .stats-inline { display: flex; gap: 20px; }
+  .stat-inline { display: flex; align-items: center; gap: 6px; }
+  .stat-inline-val { font-size: 13px; font-weight: 700; color: #fff; }
+  .stat-inline-label { font-size: 9px; color: #606070; }
+
+  .badge-row { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .badge { padding: 3px 8px; border-radius: 4px; font-size: 9px; color: #a0a0b0; border: 1px solid rgba(255,255,255,0.08); }
+
+  .eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #2563eb; margin-bottom: 10px; }
+  .divider-line { width: 32px; height: 2px; background: #2563eb; margin-bottom: 14px; border-radius: 2px; }
+</style>
+</head>
+<body>
+<h1>Hero 首屏改版方案</h1>
+<p class="subtitle">三个方向，请选择最符合品牌调性的一个</p>
+
+<div class="options">
+
+  <!-- Option A -->
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="preview">
+      <div class="hero" style="background:#08080f;">
+        <div class="hero-inner">
+          <div class="eyebrow">半导体中后道设备交易与服务</div>
+          <div class="h1-a">专业半导体设备<br><span class="grad">交易与服务</span></div>
+          <p class="body-text">覆盖探针台、测试机、焊线机、划片机等中后道核心设备买卖，提供验机、整备、安装调试及维保全程服务。</p>
+          <div class="btns">
+            <span class="btn-primary">浏览在售设备 →</span>
+            <span class="btn-outline">提交采购需求</span>
+          </div>
+          <div class="stats">
+            <div><div class="stat-val">300+</div><div class="stat-label">成交台次</div></div>
+            <div><div class="stat-val">50+</div><div class="stat-label">服务客户</div></div>
+            <div><div class="stat-val">8年</div><div class="stat-label">行业经验</div></div>
+            <div><div class="stat-val">全程</div><div class="stat-label">整备验机</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="desc">
+        <strong>A — 极简直接</strong>
+        <p>去掉chip标签，用全大写eyebrow替代。标题精简为两行，body文字收短，整体更克制。接近 Linear 风格。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="preview">
+      <div class="hero" style="background:#08080f;">
+        <div class="hero-inner">
+          <div class="chip"><span class="chip-dot"></span>半导体中后道设备</div>
+          <div class="h1-b">二手半导体设备<br>买卖 · 验机 · 维保</div>
+          <p class="body-text-sm" style="margin-bottom:12px;">专注探针台、测试机、焊线机、划片机、固晶机等中后道核心设备，整备验机到位，附完整检测报告。</p>
+          <div class="badge-row">
+            <span class="badge">Probe Station</span>
+            <span class="badge">Wire Bonder</span>
+            <span class="badge">Dicing Saw</span>
+            <span class="badge">ATE Tester</span>
+            <span class="badge">Die Bonder</span>
+          </div>
+          <div class="btns">
+            <span class="btn-primary">浏览在售设备 →</span>
+            <span class="btn-outline">联系我们</span>
+          </div>
+          <div class="stats-inline" style="border-top:1px solid rgba(255,255,255,0.06);padding-top:14px;">
+            <div class="stat-inline"><span class="stat-inline-val">300+</span><span class="stat-inline-label">台设备成交</span></div>
+            <div class="stat-inline"><span class="stat-inline-val">50+</span><span class="stat-inline-label">服务客户</span></div>
+            <div class="stat-inline"><span class="stat-inline-val">8年</span><span class="stat-inline-label">深耕行业</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="desc">
+        <strong>B — 技术感强</strong>
+        <p>标题直接说业务（买卖·验机·维保），加设备英文名badge增强技术感，统计数字横排更紧凑。面向工程师受众。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option C -->
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="preview">
+      <div class="hero" style="background:#08080f;">
+        <div class="hero-inner" style="max-width:480px;">
+          <div class="divider-line"></div>
+          <div class="h1-c" style="font-size:24px;margin-bottom:8px;">
+            半导体中后道设备<br>
+            <span style="color:#60a5fa;">交易 · 整备 · 维保</span>
+          </div>
+          <p class="body-text-sm">专注二手设备买卖与技术服务，8年行业积累，工程师团队全程验机整备，附完整检测报告。</p>
+          <div class="btns">
+            <span class="btn-primary">查看在售设备</span>
+            <span class="btn-outline">提交询盘</span>
+          </div>
+          <div style="display:flex;gap:16px;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">
+            <div style="font-size:9px;color:#606070;">✓ 300+ 台成交</div>
+            <div style="font-size:9px;color:#606070;">✓ 50+ 服务客户</div>
+            <div style="font-size:9px;color:#606070;">✓ 整备验机报告</div>
+          </div>
+        </div>
+      </div>
+      <div class="desc">
+        <strong>C — 克制工业</strong>
+        <p>蓝色横线替代chip，标题最短最直接，统计行用小字符号"✓"排列。整体最冷静，适合偏保守的B2B客户。</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="margin-top:20px;font-size:11px;color:#606070;">点击选择，然后在终端告诉我你的选择</p>
+</body>
+</html>

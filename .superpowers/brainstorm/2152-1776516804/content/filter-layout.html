@@ -1,0 +1,111 @@
+<h2>设备列表页：筛选栏布局方案</h2>
+<p class="subtitle">三种方案，各有侧重。请选择最符合你预期的布局。</p>
+
+<div class="cards">
+
+  <!-- Option A: Top filter bar -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f0f1a;padding:16px;font-family:monospace;font-size:11px;color:#888;">
+      <div style="background:#1a1a2e;border-radius:6px;padding:8px 12px;margin-bottom:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <span style="color:#4a9eff;font-size:10px;border:1px solid #4a9eff55;padding:2px 8px;border-radius:4px;">全部</span>
+        <span style="font-size:10px;border:1px solid #333;padding:2px 8px;border-radius:4px;">探针台</span>
+        <span style="font-size:10px;border:1px solid #333;padding:2px 8px;border-radius:4px;">测试机</span>
+        <span style="font-size:10px;border:1px solid #333;padding:2px 8px;border-radius:4px;">减薄机</span>
+        <span style="font-size:10px;border:1px solid #333;padding:2px 8px;border-radius:4px;">划片机</span>
+        <span style="font-size:10px;border:1px solid #333;padding:2px 8px;border-radius:4px;">焊线机</span>
+        <span style="margin-left:auto;font-size:10px;border:1px solid #333;padding:2px 8px;border-radius:4px;">●现货 ○可调货</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — 顶部 Tab 筛选栏</h3>
+      <p>分类 Tab 横排在卡片网格上方，现货/可调货切换放右侧。布局最简洁，内容区最宽，适合移动端。</p>
+      <div class="pros-cons" style="margin-top:8px;">
+        <div class="pros"><h4>优点</h4><ul><li>实现最简单</li><li>内容区宽，可3列</li><li>移动端友好</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>多条件同时筛选弱</li><li>Tab过多时会换行</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option B: Left sidebar -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f0f1a;padding:16px;font-family:monospace;font-size:11px;color:#888;">
+      <div style="display:flex;gap:10px;">
+        <div style="width:90px;background:#1a1a2e;border-radius:6px;padding:8px;flex-shrink:0;border:1px solid #2a2a3e;">
+          <div style="font-size:9px;color:#4a9eff;margin-bottom:6px;font-weight:bold;">设备类型</div>
+          <div style="font-size:9px;padding:3px 0;border-bottom:1px solid #2a2a3e55;">▶ 全部 (31)</div>
+          <div style="font-size:9px;padding:3px 0;color:#4a9eff;">▶ 探针台 (7)</div>
+          <div style="font-size:9px;padding:3px 0;">▶ 测试机 (5)</div>
+          <div style="font-size:9px;padding:3px 0;">▶ 减薄机 (4)</div>
+          <div style="font-size:9px;padding:3px 0;">▶ 划片机 (4)</div>
+          <div style="font-size:9px;padding:3px 0;">▶ 焊线机 (5)</div>
+          <div style="font-size:9px;padding:3px 0;">▶ 固晶机 (4)</div>
+          <div style="margin-top:8px;font-size:9px;color:#4a9eff;margin-bottom:4px;font-weight:bold;">库存状态</div>
+          <div style="font-size:9px;padding:2px 0;">☑ 现货</div>
+          <div style="font-size:9px;padding:2px 0;">☑ 可调货</div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+          <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+          <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+          <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — 左侧固定侧边栏</h3>
+      <p>左侧竖排筛选面板，显示各类别数量，右侧 2 列卡片网格。风格类似 B2B 采购平台，适合多条件筛选。</p>
+      <div class="pros-cons" style="margin-top:8px;">
+        <div class="pros"><h4>优点</h4><ul><li>多条件并行筛选</li><li>显示每类数量直观</li><li>可扩展更多筛选维度</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>内容区变窄(2列)</li><li>移动端需抽屉处理</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option C: Top bar + chip group hybrid -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f0f1a;padding:16px;font-family:monospace;font-size:11px;color:#888;">
+      <div style="background:#1a1a2e;border-radius:6px;padding:10px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;border:1px solid #2a2a3e;">
+        <div style="display:flex;gap:6px;flex:1;flex-wrap:wrap;">
+          <span style="font-size:9px;background:#4a9eff22;color:#4a9eff;border:1px solid #4a9eff55;padding:3px 8px;border-radius:20px;">全部</span>
+          <span style="font-size:9px;border:1px solid #333;padding:3px 8px;border-radius:20px;">探针台</span>
+          <span style="font-size:9px;border:1px solid #333;padding:3px 8px;border-radius:20px;">测试机</span>
+          <span style="font-size:9px;border:1px solid #333;padding:3px 8px;border-radius:20px;">减薄机</span>
+          <span style="font-size:9px;border:1px solid #333;padding:3px 8px;border-radius:20px;">划片机</span>
+          <span style="font-size:9px;border:1px solid #333;padding:3px 8px;border-radius:20px;">焊线机</span>
+          <span style="font-size:9px;border:1px solid #333;padding:3px 8px;border-radius:20px;">固晶机</span>
+        </div>
+        <div style="display:flex;gap:4px;flex-shrink:0;">
+          <span style="font-size:9px;border:1px solid #4a9eff55;color:#4a9eff;padding:3px 8px;border-radius:4px;">现货优先</span>
+          <span style="font-size:9px;border:1px solid #333;padding:3px 8px;border-radius:4px;color:#888;">31台</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+        <div style="background:#1a1a2e;border-radius:6px;height:72px;border:1px solid #2a2a3e;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Pill Chip 横排（推荐）</h3>
+      <p>圆角 pill 样式横排分类标签，右侧"现货优先"开关 + 当前结果数量。3 列卡片网格。风格最接近 Linear/Vercel，克制且现代。</p>
+      <div class="pros-cons" style="margin-top:8px;">
+        <div class="pros"><h4>优点</h4><ul><li>视觉最轻量</li><li>3列卡片，信息量最大</li><li>与整体深色风格契合度高</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>仅支持单选分类</li><li>类别超多时需折行</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:24px;">👆 点击卡片选择，然后在终端告诉我你的选择</p>
