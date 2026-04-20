@@ -10,20 +10,14 @@ export default function FeaturedEquipment() {
   const featured = getFeaturedEquipments(6);
 
   return (
-    <section className="py-24 bg-[#0a0a14]" aria-labelledby="featured-heading">
+    <section className="pt-10 pb-24 bg-[#0a0a14]" aria-labelledby="featured-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-3">
               精选在售
             </p>
-            <h2
-              id="featured-heading"
-              className="text-3xl sm:text-4xl font-semibold tracking-tight text-white"
-            >
-              近期在售设备
-            </h2>
-            <p className="text-sm text-[#606070] mt-2">
+            <p className="text-sm text-[#606070]">
               均已完成整备验机，可随时提供设备实机照片及检测报告
             </p>
           </div>
