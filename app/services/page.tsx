@@ -19,7 +19,7 @@ import CTASection from "@/components/layout/CTASection";
 export const metadata: Metadata = {
   title: "服务中心",
   description:
-    "芯迹半导体设备提供设备验机、整备翻新、安装调试及维保全套技术服务，覆盖半导体中后道设备全生命周期，工程师团队24小时响应。",
+    "创芯半导体设备提供设备验机、整备翻新、安装调试及维保全套技术服务，覆盖半导体中后道设备全生命周期，工程师团队24小时响应。",
 };
 
 const services = [

@@ -33,7 +33,8 @@
       "Read(//mnt/d/workwork/tony/website/second/temp/equipment_images/te-002/**)",
       "Bash(cp /mnt/d/workwork/tony/website/second/temp/equipment_images/wb-002/000002.jpg /home/ly/claude/semisite/public/images/equipment/wb-002.jpg)",
       "Bash(cp /mnt/d/workwork/tony/website/second/temp/equipment_images/te-002/te-002_1.jpg /home/ly/claude/semisite/public/images/equipment/te-002.jpg)",
-      "Bash(curl *)"
+      "Bash(curl *)",
+      "Bash(xargs sed *)"
     ]
   }
 }

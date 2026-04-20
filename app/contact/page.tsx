@@ -6,7 +6,7 @@ import InquiryForm from "@/components/contact/InquiryForm";
 export const metadata: Metadata = {
   title: "联系我们",
   description:
-    "提交设备采购询盘或服务需求，芯迹半导体设备工程师团队将在1个工作日内回复，支持电话、邮件、微信多渠道沟通。",
+    "提交设备采购询盘或服务需求，创芯半导体设备工程师团队将在1个工作日内回复，支持电话、邮件、微信多渠道沟通。",
 };
 
 const contactItems = [
@@ -19,7 +19,7 @@ const contactItems = [
   {
     icon: Mail,
     label: "商务邮箱",
-    value: "bd@xinjisemi.com",
+    value: "bd@innosemi.com",
     sub: "24小时内回复",
   },
   {

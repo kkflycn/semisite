@@ -17,7 +17,7 @@ import CTASection from "@/components/layout/CTASection";
 export const metadata: Metadata = {
   title: "关于我们",
   description:
-    "芯迹半导体设备成立于2016年，深耕半导体中后道二手设备交易与服务领域，拥有原厂背景工程师团队，服务国内外50余家半导体封测企业。",
+    "创芯半导体设备成立于2016年，深耕半导体中后道二手设备交易与服务领域，拥有原厂背景工程师团队，服务国内外50余家半导体封测企业。",
 };
 
 const stats = [
@@ -119,7 +119,7 @@ export default function AboutPage() {
             专注半导体中后道设备交易与服务
           </h1>
           <p className="text-base text-[#606070] max-w-xl leading-relaxed mb-8">
-            芯迹半导体设备成立于2016年，深耕半导体中后道设备交易与服务领域。我们不是设备中介，而是具备原厂技术背景的专业服务商——每一台设备的背后，都有工程师的亲手验证。
+            创芯半导体设备成立于2016年，深耕半导体中后道设备交易与服务领域。我们不是设备中介，而是具备原厂技术背景的专业服务商——每一台设备的背后，都有工程师的亲手验证。
           </p>
           <Link href="/contact">
             <Button className="h-10 px-5 gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium border-0 rounded-lg cursor-pointer">

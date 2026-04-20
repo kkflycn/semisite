@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, Cpu, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -27,17 +27,27 @@ function Logo({ onClick }: { onClick?: () => void }) {
       href="/"
       onClick={onClick}
       className="flex items-center gap-2.5 group"
-      aria-label="芯迹半导体设备 — 返回首页"
+      aria-label="创芯半导体设备 — 返回首页"
     >
-      <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600 shrink-0">
-        <Cpu size={18} className="text-white" strokeWidth={1.8} />
+      <div className="flex items-center justify-center w-8 h-8 rounded-lg shrink-0" style={{ background: "linear-gradient(135deg, #2F68FF 0%, #1a4fd6 100%)" }}>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <rect x="5" y="5" width="8" height="8" rx="1" stroke="white" strokeWidth="1.4"/>
+          <line x1="7" y1="2" x2="7" y2="5" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="11" y1="2" x2="11" y2="5" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="7" y1="13" x2="7" y2="16" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="11" y1="13" x2="11" y2="16" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="2" y1="7" x2="5" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="2" y1="11" x2="5" y2="11" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="13" y1="7" x2="16" y2="7" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="13" y1="11" x2="16" y2="11" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
+        </svg>
       </div>
       <div className="flex flex-col leading-none">
-        <span className="text-sm font-semibold tracking-tight text-white">
-          芯迹半导体
+        <span className="text-[15px] font-semibold tracking-tight text-white" style={{ letterSpacing: "0.02em" }}>
+          InnoSemi
         </span>
-        <span className="text-[10px] tracking-widest text-blue-400 uppercase font-medium">
-          Equipment
+        <span className="text-[9px] text-[#4FD1FF]/80 font-medium" style={{ letterSpacing: "0.05em" }}>
+          创芯半导体
         </span>
       </div>
     </Link>

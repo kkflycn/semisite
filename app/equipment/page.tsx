@@ -6,7 +6,7 @@ import { equipments } from "@/data/equipments";
 export const metadata: Metadata = {
   title: "在售设备",
   description:
-    "浏览芯迹半导体设备在售库存，涵盖探针台、测试机、减薄机、划片机、固晶机、焊线机、塑封机等半导体中后道核心设备，均已完成整备验机。",
+    "浏览创芯半导体设备在售库存，涵盖探针台、测试机、减薄机、划片机、固晶机、焊线机、塑封机等半导体中后道核心设备，均已完成整备验机。",
 };
 
 export default function EquipmentPage() {

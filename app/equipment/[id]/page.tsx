@@ -85,7 +85,7 @@ export default async function EquipmentDetailPage({ params }: Props) {
               : 'https://schema.org/PreOrder',
             seller: {
               '@type': 'Organization',
-              name: '芯迹半导体设备',
+              name: '创芯半导体设备',
             },
           },
         }).replace(/</g, '\u003c'),
