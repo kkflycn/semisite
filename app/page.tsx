@@ -9,9 +9,9 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <FeaturedEquipment />
       <BusinessSection />
       <TrustSection />
-      <FeaturedEquipment />
       <ServicesPreview />
       <CTASection />
     </>
