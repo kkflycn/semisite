@@ -25,7 +25,7 @@ const contactItems = [
   {
     icon: MapPin,
     label: "公司地址",
-    value: "上海市浦东新区张江高科技园区",
+    value: "广东省深圳市南山区科技园",
     sub: "（详细地址见合作协议）",
   },
   {

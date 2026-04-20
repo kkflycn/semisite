@@ -63,6 +63,33 @@ export default async function EquipmentDetailPage({ params }: Props) {
 
   return (
     <>
+
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: `${brand} ${model} — ${name}`,
+          brand: {
+            '@type': 'Brand',
+            name: brand,
+          },
+          description: description,
+          image: imageUrl,
+          offers: {
+            '@type': 'Offer',
+            availability: isInStock
+              ? 'https://schema.org/InStock'
+              : 'https://schema.org/PreOrder',
+            seller: {
+              '@type': 'Organization',
+              name: '芯迹半导体设备',
+            },
+          },
+        }).replace(/</g, '\u003c'),
+      }}
+    />
       {/* Breadcrumb */}
       <div className="border-b border-white/[0.06] bg-[#080810]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2 text-xs text-[#606070]">

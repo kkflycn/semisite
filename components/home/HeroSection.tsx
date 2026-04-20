@@ -1,6 +1,12 @@
+"use client";
+
 import Link from "next/link";
-import { ChevronRight, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { ChevronRight, ArrowRight, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const stats = [
   { value: "300+", label: "成交台次" },
@@ -9,10 +15,12 @@ const stats = [
   { value: "全程", label: "整备验机" },
 ];
 
+const badges = ["TEL", "TSK", "Teradyne", "Advantest", "Disco"];
+
 export default function HeroSection() {
   return (
     <section
-      className="relative min-h-[92vh] flex items-center overflow-hidden"
+      className="relative min-h-[88vh] flex items-start overflow-hidden"
       aria-label="品牌主张"
     >
       {/* Background grid */}
@@ -27,62 +35,175 @@ export default function HeroSection() {
       />
       {/* Blue radial glow */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-blue-600/10 rounded-full blur-[120px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#0a0a0f] to-transparent" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-        <div className="max-w-2xl">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
-          {/* Eyebrow */}
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase text-blue-400 mb-5">
-            半导体中后道设备交易与服务
-          </p>
+          {/* ── Left: copy ── */}
+          <div className="max-w-xl">
+            {/* Eyebrow */}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease }}
+              className="text-xs font-semibold tracking-[0.18em] uppercase text-blue-400 mb-5"
+            >
+              半导体中后道设备交易与服务
+            </motion.p>
 
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-semibold tracking-tight leading-[1.15] mb-5">
-            <span className="text-white">专业半导体设备</span>
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
-              交易与服务
-            </span>
-          </h1>
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease, delay: 0.07 }}
+              className="text-4xl sm:text-5xl lg:text-[54px] font-semibold tracking-tight leading-[1.15] mb-5"
+            >
+              <span className="text-white">专业半导体设备</span>
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
+                交易与服务
+              </span>
+            </motion.h1>
 
-          {/* Body */}
-          <p className="text-base text-[#a0a0b0] leading-relaxed max-w-lg mb-10">
-            覆盖探针台、测试机、焊线机、划片机等中后道核心设备买卖，提供验机、整备、安装调试及维保全程服务。
-          </p>
+            {/* Body */}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease, delay: 0.14 }}
+              className="text-base text-[#a0a0b0] leading-relaxed max-w-lg mb-8"
+            >
+              覆盖探针台、测试机、焊线机、划片机等中后道核心设备买卖，提供验机、整备、安装调试及维保全程服务。
+            </motion.p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-16">
-            <Link href="/equipment">
-              <Button className="h-11 px-6 gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium border-0 rounded-lg transition-colors cursor-pointer">
-                浏览在售设备
-                <ChevronRight size={16} />
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button
-                variant="outline"
-                className="h-11 px-6 gap-2 text-sm font-medium rounded-lg border-white/[0.12] bg-white/[0.04] text-[#a0a0b0] hover:text-white hover:bg-white/[0.08] hover:border-white/[0.18] transition-colors cursor-pointer"
-              >
-                提交采购需求
-                <ArrowRight size={16} />
-              </Button>
-            </Link>
+            {/* Trust signals */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease, delay: 0.18 }}
+              className="flex flex-wrap gap-x-5 gap-y-2 mb-8"
+            >
+              {["原厂整备验机", "到货即用", "售后有保障"].map((item) => (
+                <span key={item} className="flex items-center gap-1.5 text-sm text-[#a0a0b0]">
+                  <CheckCircle2 size={14} className="text-blue-400 shrink-0" />
+                  {item}
+                </span>
+              ))}
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease, delay: 0.21 }}
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-14"
+            >
+              <Link href="/equipment">
+                <Button className="h-11 px-6 gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium border-0 rounded-lg transition-colors cursor-pointer">
+                  浏览在售设备
+                  <ChevronRight size={16} />
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button
+                  variant="outline"
+                  className="h-11 px-6 gap-2 text-sm font-medium rounded-lg border-white/[0.12] bg-white/[0.04] text-[#a0a0b0] hover:text-white hover:bg-white/[0.08] hover:border-white/[0.18] transition-colors cursor-pointer"
+                >
+                  提交采购需求
+                  <ArrowRight size={16} />
+                </Button>
+              </Link>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease, delay: 0.28 }}
+              className="grid grid-cols-4 gap-6 pt-8 border-t border-white/[0.06]"
+            >
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-2xl sm:text-3xl font-semibold text-white mb-0.5">
+                    {stat.value}
+                  </p>
+                  <p className="text-xs text-[#606070]">{stat.label}</p>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-4 gap-6 pt-8 border-t border-white/[0.06]">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <p className="text-2xl sm:text-3xl font-semibold text-white mb-0.5">
-                  {stat.value}
-                </p>
-                <p className="text-xs text-[#606070]">{stat.label}</p>
+          {/* ── Right: equipment visual ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease, delay: 0.15 }}
+            className="hidden lg:block relative"
+          >
+            {/* Glow behind image */}
+            <div className="absolute -inset-6 bg-blue-600/15 blur-3xl rounded-3xl pointer-events-none" />
+
+            {/* Floating image wrapper */}
+            <motion.div
+              animate={{ y: [0, -14, 0] }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+              className="relative"
+            >
+              {/* Main equipment image */}
+              <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl">
+                <Image
+                  src="https://picsum.photos/seed/wafer-prober-tsk/720/540"
+                  alt="半导体测试设备"
+                  width={720}
+                  height={540}
+                  className="w-full object-cover"
+                  priority
+                />
+                {/* Dark overlay for text legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/80 via-transparent to-transparent" />
+
+                {/* Status badge */}
+                <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-xs text-white/80 font-medium">实时在售</span>
+                </div>
+
+                {/* Bottom info card */}
+                <div className="absolute bottom-0 inset-x-0 p-4">
+                  <p className="text-xs text-[#a0a0b0] mb-1">最新上架</p>
+                  <p className="text-sm font-semibold text-white">TEL P12XL 全自动晶圆探针台</p>
+                  <p className="text-xs text-[#606070] mt-0.5">300mm · 已整备验机 · 可议价</p>
+                </div>
               </div>
-            ))}
-          </div>
+
+              {/* Brand badges row */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease, delay: 0.5 }}
+                className="absolute -bottom-5 left-4 right-4 flex items-center gap-2 bg-[#111118]/90 backdrop-blur-sm border border-white/[0.08] rounded-xl px-4 py-3"
+              >
+                <span className="text-[10px] text-[#606070] shrink-0 mr-1">覆盖品牌</span>
+                {badges.map((b) => (
+                  <span key={b} className="text-xs font-medium text-[#a0a0b0] bg-white/[0.05] rounded px-2 py-0.5 whitespace-nowrap">
+                    {b}
+                  </span>
+                ))}
+                <span className="text-xs text-[#606070]">等10+</span>
+              </motion.div>
+            </motion.div>
+
+            {/* Corner decorative dot grid */}
+            <div
+              className="absolute -top-8 -right-8 w-32 h-32 opacity-20 pointer-events-none"
+              style={{
+                backgroundImage: "radial-gradient(circle, rgba(96,130,255,0.6) 1px, transparent 1px)",
+                backgroundSize: "12px 12px",
+              }}
+            />
+          </motion.div>
 
         </div>
       </div>

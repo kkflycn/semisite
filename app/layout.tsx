@@ -72,6 +72,34 @@ export default function RootLayout({
       className={`${inter.variable} ${notoSansSC.variable} dark h-full`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: '芯迹半导体设备（深圳）有限公司',
+              url: 'https://www.xinjisemi.com',
+              logo: 'https://www.xinjisemi.com/logo.png',
+              description:
+                '专注半导体中后道二手设备交易与服务，涵盖探针台、测试机、焊线机、划片机、固晶机等核心设备，提供验机、整备、安装调试及维保全流程服务。',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: '深圳市',
+                addressRegion: '广东省',
+                addressCountry: 'CN',
+              },
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'customer service',
+                email: 'info@xinjisemi.com',
+                availableLanguage: 'Chinese',
+              },
+            }).replace(/</g, '\u003c'),
+          }}
+        />
+      </head>
       <body
         className="min-h-full flex flex-col bg-background text-foreground antialiased"
         style={{

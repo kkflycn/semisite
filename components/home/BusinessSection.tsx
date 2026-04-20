@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, ShoppingCart, Wrench } from "lucide-react";
+import { FadeIn, FadeInStagger, FadeInItem } from "@/components/shared/FadeIn";
 
 const pillars = [
   {
@@ -38,7 +41,7 @@ export default function BusinessSection() {
   return (
     <section className="py-24 bg-[#080810]" aria-labelledby="business-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-14">
+        <FadeIn className="mb-14">
           <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-3">
             核心业务
           </p>
@@ -48,52 +51,51 @@ export default function BusinessSection() {
           >
             交易与服务，覆盖设备全生命周期
           </h2>
-        </div>
+        </FadeIn>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <FadeInStagger stagger={0.1} className="grid md:grid-cols-2 gap-6">
           {pillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
-              <div
-                key={pillar.tag}
-                className="flex flex-col bg-[#111118] border border-white/[0.06] rounded-2xl p-8 hover:border-white/[0.10] transition-colors"
-              >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20">
-                    <Icon size={20} className="text-blue-400" />
+              <FadeInItem key={pillar.tag}>
+                <div className="flex flex-col h-full bg-[#111118] border border-white/[0.06] rounded-2xl p-8 hover:border-white/[0.10] transition-colors">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20">
+                      <Icon size={20} className="text-blue-400" />
+                    </div>
+                    <span className="text-xs font-semibold tracking-widest uppercase text-blue-400">
+                      {pillar.tag}
+                    </span>
                   </div>
-                  <span className="text-xs font-semibold tracking-widest uppercase text-blue-400">
-                    {pillar.tag}
-                  </span>
+
+                  <h3 className="text-xl font-semibold text-white mb-3">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-sm text-[#a0a0b0] leading-relaxed mb-6">
+                    {pillar.description}
+                  </p>
+
+                  <ul className="space-y-2 mb-8">
+                    {pillar.highlights.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-[#a0a0b0]">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    href={pillar.href}
+                    className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors group"
+                  >
+                    {pillar.linkLabel}
+                    <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
                 </div>
-
-                <h3 className="text-xl font-semibold text-white mb-3">
-                  {pillar.title}
-                </h3>
-                <p className="text-sm text-[#a0a0b0] leading-relaxed mb-6">
-                  {pillar.description}
-                </p>
-
-                <ul className="space-y-2 mb-8">
-                  {pillar.highlights.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-[#a0a0b0]">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href={pillar.href}
-                  className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors group"
-                >
-                  {pillar.linkLabel}
-                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
+              </FadeInItem>
             );
           })}
-        </div>
+        </FadeInStagger>
       </div>
     </section>
   );

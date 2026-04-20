@@ -166,7 +166,7 @@ export default function ServicesPage() {
           <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-3">
             技术服务
           </p>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4 max-w-2xl">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4 max-w-2xl">
             覆盖设备全生命周期的技术服务
           </h1>
           <p className="text-base text-[#606070] max-w-xl leading-relaxed mb-8">
