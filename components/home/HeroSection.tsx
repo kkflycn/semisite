@@ -3,8 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight, ArrowRight, CheckCircle2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { getFeaturedEquipments } from "@/data/equipments";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -17,7 +19,27 @@ const stats = [
 
 const badges = ["TEL", "TSK", "Teradyne", "Advantest", "Disco"];
 
+const carouselItems = getFeaturedEquipments(5).map((eq) => ({
+  id: eq.id,
+  src: eq.imageUrl,
+  alt: eq.name,
+  name: `${eq.brand} ${eq.model} ${eq.name}`,
+  sub: `${eq.specs[0]?.value ?? ""} · 已整备验机 · 可议价`,
+}));
+
 export default function HeroSection() {
+  const [index, setIndex] = useState(0);
+  const paused = useRef(false);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (!paused.current) setIndex((i) => (i + 1) % carouselItems.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, []);
+
+  const current = carouselItems[index];
+
   return (
     <section
       className="relative flex items-start overflow-hidden"
@@ -44,7 +66,6 @@ export default function HeroSection() {
 
           {/* ── Left: copy ── */}
           <div className="max-w-xl">
-            {/* Eyebrow */}
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -54,7 +75,6 @@ export default function HeroSection() {
               半导体中后道设备交易与服务
             </motion.p>
 
-            {/* Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -68,7 +88,6 @@ export default function HeroSection() {
               </span>
             </motion.h1>
 
-            {/* Body */}
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -78,7 +97,6 @@ export default function HeroSection() {
               覆盖探针台、测试机、焊线机、划片机等中后道核心设备买卖，提供验机、整备、安装调试及维保全程服务。
             </motion.p>
 
-            {/* Trust signals */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -93,7 +111,6 @@ export default function HeroSection() {
               ))}
             </motion.div>
 
-            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -117,7 +134,6 @@ export default function HeroSection() {
               </Link>
             </motion.div>
 
-            {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -135,34 +151,51 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* ── Right: equipment visual ── */}
+          {/* ── Right: carousel ── */}
           <motion.div
             initial={{ opacity: 0, x: 32 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.15 }}
             className="hidden lg:block relative"
+            onMouseEnter={() => { paused.current = true; }}
+            onMouseLeave={() => { paused.current = false; }}
           >
-            {/* Glow behind image */}
+            {/* Glow */}
             <div className="absolute -inset-6 bg-blue-600/15 blur-3xl rounded-3xl pointer-events-none" />
 
-            {/* Floating image wrapper */}
+            {/* Floating wrapper */}
             <motion.div
               animate={{ y: [0, -14, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
               className="relative"
             >
-              {/* Main equipment image */}
+              {/* Card */}
               <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl">
-                <Image
-                  src="/images/equipment/ps-001.jpg"
-                  alt="半导体测试设备"
-                  width={720}
-                  height={540}
-                  className="w-full object-cover"
-                  priority
-                />
-                {/* Dark overlay for text legibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/80 via-transparent to-transparent" />
+
+                {/* Image crossfade */}
+                <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
+                  <AnimatePresence mode="sync">
+                    <motion.div
+                      key={current.id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.8, ease: "easeInOut" }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={current.src}
+                        alt={current.alt}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/80 via-transparent to-transparent pointer-events-none" />
 
                 {/* Status badge */}
                 <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1">
@@ -170,11 +203,34 @@ export default function HeroSection() {
                   <span className="text-xs text-white/80 font-medium">实时在售</span>
                 </div>
 
-                {/* Bottom info card */}
+                {/* Dot indicators */}
+                <div className="absolute top-4 right-4 flex gap-1.5">
+                  {carouselItems.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setIndex(i)}
+                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                        i === index ? "bg-white w-4" : "bg-white/30"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {/* Bottom info crossfade */}
                 <div className="absolute bottom-0 inset-x-0 p-4">
                   <p className="text-xs text-[#a0a0b0] mb-1">最新上架</p>
-                  <p className="text-sm font-semibold text-white">TEL P12XL 全自动晶圆探针台</p>
-                  <p className="text-xs text-[#606070] mt-0.5">300mm · 已整备验机 · 可议价</p>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={current.id + "-info"}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.35 }}
+                    >
+                      <p className="text-sm font-semibold text-white leading-snug">{current.name}</p>
+                      <p className="text-xs text-[#606070] mt-0.5">{current.sub}</p>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </div>
 
@@ -195,7 +251,7 @@ export default function HeroSection() {
               </motion.div>
             </motion.div>
 
-            {/* Corner decorative dot grid */}
+            {/* Corner dot grid */}
             <div
               className="absolute -top-8 -right-8 w-32 h-32 opacity-20 pointer-events-none"
               style={{
