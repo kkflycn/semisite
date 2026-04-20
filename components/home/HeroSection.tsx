@@ -170,7 +170,7 @@ export default function HeroSection() {
               className="relative"
             >
               {/* Card */}
-              <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl">
+              <Link href={`/equipment/${current.id}`} className="block relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl group/card">
 
                 {/* Image crossfade */}
                 <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
@@ -194,8 +194,8 @@ export default function HeroSection() {
                   </AnimatePresence>
                 </div>
 
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/80 via-transparent to-transparent pointer-events-none" />
+                {/* Dark overlay — brightens slightly on hover to hint clickability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/80 via-transparent to-transparent pointer-events-none transition-opacity duration-300 group-hover/card:opacity-80" />
 
                 {/* Status badge */}
                 <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1">
@@ -232,7 +232,7 @@ export default function HeroSection() {
                     </motion.div>
                   </AnimatePresence>
                 </div>
-              </div>
+              </Link>
 
               {/* Brand badges row */}
               <motion.div
