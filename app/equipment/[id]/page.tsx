@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import CTASection from "@/components/layout/CTASection";
+import MobileDetailBar from "@/components/equipment/MobileDetailBar";
 import { equipments, getEquipmentById } from "@/data/equipments";
 import { CATEGORY_LABELS } from "@/types";
 
@@ -104,8 +105,11 @@ export default async function EquipmentDetailPage({ params }: Props) {
         </div>
       </div>
 
+      {/* Mobile sticky bottom bar */}
+      <MobileDetailBar inquiryHref={`/contact?equipment=${encodeURIComponent(`${brand} ${model}`)}`} />
+
       {/* Main content */}
-      <div className="bg-[#080810]">
+      <div className="bg-[#080810] pb-24 lg:pb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid lg:grid-cols-[3fr_2fr] gap-10 items-start">
 

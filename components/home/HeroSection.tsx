@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronRight, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ChevronRight, ArrowRight, CheckCircle2, ScanSearch, BadgeCheck, Zap, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,55 @@ const carouselItems = getFeaturedEquipments(5).map((eq) => ({
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
   const [hovered, setHovered] = useState(false);
+  const [activeFeature, setActiveFeature] = useState<number | null>(null);
   const paused = useRef(false);
+
+  const mobileFeatures = [
+    {
+      icon: ScanSearch,
+      label: "全程验机",
+      badge: "100+ 项",
+      points: [
+        "原厂技术团队执行，覆盖电气·机械·软件全维度",
+        "出具标准化验机报告，项目可追溯",
+        "关键零部件寿命评估，风险提前告知",
+      ],
+      summary: "每台设备均附完整验机档案，拒绝黑箱交货",
+    },
+    {
+      icon: BadgeCheck,
+      label: "品质认证",
+      badge: "原厂溯源",
+      points: [
+        "TEL / TSK / Teradyne 等原厂授权渠道采购",
+        "设备档案可溯源至原厂出货记录",
+        "实拍图 + 检测视频，购前可查验",
+      ],
+      summary: "拒绝翻牌机，每台设备身份真实透明",
+    },
+    {
+      icon: Zap,
+      label: "到货即用",
+      badge: "含安装",
+      points: [
+        "出厂前完整标定与功能调试",
+        "原厂工程师上门安装，平均 < 3 个工作日交付",
+        "随附原厂操作手册及耗材清单",
+      ],
+      summary: "设备到场即投产，将停线损耗降至最低",
+    },
+    {
+      icon: ShieldCheck,
+      label: "售后保障",
+      badge: "6 个月",
+      points: [
+        "整机质保 6 个月，核心部件免费更换",
+        "7×24 小时技术热线，4 小时响应承诺",
+        "远程诊断 + 工程师上门双重支持",
+      ],
+      summary: "质保期满后提供持续维保服务，长期合作优先",
+    },
+  ];
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -68,115 +116,167 @@ export default function HeroSection() {
       ══════════════════════════════════════ */}
       <div className="block lg:hidden">
 
-        {/* Full-bleed hero image carousel */}
+        {/* Full-bleed hero image carousel — outer div captures touch for pause */}
         <div
-          className="relative w-full overflow-hidden"
-          style={{ paddingTop: "64px", height: "calc(64px + 48vw + 80px)", minHeight: "340px", maxHeight: "520px" }}
           onTouchStart={() => { paused.current = true; }}
           onTouchEnd={() => { setTimeout(() => { paused.current = false; }, 2000); }}
         >
-          {/* Image crossfade */}
-          <AnimatePresence mode="sync">
-            <motion.div
-              key={current.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.9, ease: "easeInOut" }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={current.src}
-                alt={current.alt}
-                fill
-                className="object-cover object-center"
-                priority
-              />
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Gradient: dark at top (behind header) + strong dark at bottom */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#080810]/60 via-transparent to-[#080810]/95 pointer-events-none" />
-          {/* Side vignette for depth */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#080810]/30 via-transparent to-[#080810]/30 pointer-events-none" />
-
-          {/* Status badge */}
-          <div className="absolute left-4 flex items-center gap-1.5 bg-black/40 backdrop-blur-md border border-white/[0.12] rounded-full px-3 py-1.5" style={{ top: "76px" }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[11px] text-white/90 font-medium tracking-wide">实时在售</span>
-          </div>
-
-          {/* Dot indicators */}
-          <div className="absolute right-4 flex gap-1.5 items-center" style={{ top: "80px" }}>
-            {carouselItems.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIndex(i)}
-                className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${
-                  i === index ? "bg-white w-5" : "bg-white/30 w-1"
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Bottom: equipment info overlay */}
-          <div className="absolute bottom-0 inset-x-0 px-5 pb-5 pt-12">
-            <AnimatePresence mode="wait">
+          {/* Link wraps entire image so tapping anywhere navigates */}
+          <Link
+            href={`/equipment/${current.id}`}
+            className="relative block w-full overflow-hidden"
+            style={{ paddingTop: "64px", height: "calc(64px + 48vw + 80px)", minHeight: "340px", maxHeight: "520px" }}
+          >
+            {/* Image crossfade */}
+            <AnimatePresence mode="sync">
               <motion.div
-                key={current.id + "-minfo"}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -4 }}
-                transition={{ duration: 0.35 }}
+                key={current.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.9, ease: "easeInOut" }}
+                className="absolute inset-0"
               >
-                <p className="text-[10px] font-semibold text-blue-400 tracking-[0.2em] uppercase mb-1">最新上架</p>
-                <Link href={`/equipment/${current.id}`} className="group/imglink">
-                  <p className="text-[15px] font-semibold text-white leading-snug group-hover/imglink:text-blue-300 transition-colors">
-                    {current.name}
-                  </p>
-                  <p className="text-xs text-[#707080] mt-0.5">{current.sub}</p>
-                </Link>
+                <Image
+                  src={current.src}
+                  alt={current.alt}
+                  fill
+                  className="object-cover object-center"
+                  priority
+                />
               </motion.div>
             </AnimatePresence>
-          </div>
+
+            {/* Gradient: dark at top + strong dark at bottom */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#080810]/60 via-transparent to-[#080810]/95 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#080810]/30 via-transparent to-[#080810]/30 pointer-events-none" />
+
+            {/* Status badge */}
+            <div className="absolute left-4 flex items-center gap-1.5 bg-black/40 backdrop-blur-md border border-white/[0.12] rounded-full px-3 py-1.5" style={{ top: "76px" }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[11px] text-white/90 font-medium tracking-wide">实时在售</span>
+            </div>
+
+            {/* Dot indicators — stopPropagation so they don't trigger navigation */}
+            <div className="absolute right-4 flex gap-1.5 items-center" style={{ top: "80px" }}>
+              {carouselItems.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIndex(i); }}
+                  className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${
+                    i === index ? "bg-white w-5" : "bg-white/30 w-1"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Bottom: equipment info overlay */}
+            <div className="absolute bottom-0 inset-x-0 px-5 pb-5 pt-12">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current.id + "-minfo"}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.35 }}
+                >
+                  <p className="text-[10px] font-semibold text-blue-400 tracking-[0.2em] uppercase mb-1">最新上架</p>
+                  <p className="text-[15px] font-semibold text-white leading-snug">{current.name}</p>
+                  <p className="text-xs text-[#707080] mt-0.5">{current.sub}</p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </Link>
         </div>
 
         {/* ── Text + CTA ── */}
-        <div className="px-5 pt-7 pb-5">
+        <div className="px-5 pt-7 pb-5 text-center">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease }}
-            className="text-[11px] font-medium tracking-wider text-blue-400 mb-4"
+            className="text-[19px] font-medium tracking-wider text-blue-400 mb-4"
           >
             半导体中后道设备 · 交易与服务
           </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease, delay: 0.06 }}
-            className="text-[36px] font-semibold tracking-tight leading-[1.12] mb-5"
-          >
-            <span className="text-white block">专业半导体</span>
-            <span className="text-white block">
-              设备{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
-                交易与服务
-              </span>
-            </span>
-          </motion.h1>
-
-          <motion.p
+          {/* ── Feature tiles ── */}
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease, delay: 0.12 }}
-            className="text-[13px] text-[#909090] leading-[1.75] mb-7"
+            className="flex gap-2 mb-0"
           >
-            探针台、测试机、焊线机、划片机等中后道设备买卖
-            <br />
-            整备验机 · 安装调试 · 售后全程保障
-          </motion.p>
+            {mobileFeatures.map(({ icon: Icon, label }, i) => {
+              const active = activeFeature === i;
+              return (
+                <button
+                  key={label}
+                  onClick={() => setActiveFeature(active ? null : i)}
+                  className={`flex-1 flex flex-col items-center gap-2 rounded-xl py-3.5 border transition-all duration-200 cursor-pointer ${
+                    active
+                      ? "bg-blue-600/10 border-blue-500/50"
+                      : "bg-white/[0.04] border-white/[0.08]"
+                  } min-w-0`}
+                >
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-200 ${
+                    active
+                      ? "bg-blue-500/20 border-blue-500/40"
+                      : "bg-blue-500/10 border-blue-500/20"
+                  }`}>
+                    <Icon size={15} className="text-blue-400" strokeWidth={1.8} />
+                  </div>
+                  <span className={`text-[11px] font-medium transition-colors duration-200 ${active ? "text-white" : "text-[#909090]"}`}>
+                    {label}
+                  </span>
+                </button>
+              );
+            })}
+          </motion.div>
+
+          {/* ── Expandable detail panel ── */}
+          <AnimatePresence mode="wait">
+            {activeFeature !== null && (
+              <motion.div
+                key={activeFeature}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="mt-2 text-left bg-blue-950/30 border border-blue-500/20 rounded-xl p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[13px] font-semibold text-white">
+                      {mobileFeatures[activeFeature].label}
+                    </span>
+                    <span className="text-[10px] font-medium text-blue-400 bg-blue-500/10 border border-blue-500/25 rounded-full px-2.5 py-0.5">
+                      {mobileFeatures[activeFeature].badge}
+                    </span>
+                  </div>
+                  <ul className="space-y-2 mb-3">
+                    {mobileFeatures[activeFeature].points.map((p) => (
+                      <li key={p} className="flex items-start gap-2">
+                        <CheckCircle2 size={12} className="text-blue-400 mt-[3px] shrink-0" />
+                        <span className="text-[12px] text-[#b0b0c0] leading-relaxed">{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-[11px] text-[#606070] border-t border-white/[0.06] pt-3 leading-relaxed">
+                    {mobileFeatures[activeFeature].summary}
+                  </p>
+                  <Link href="/contact" className="block mt-3">
+                    <button className="w-full h-10 flex items-center justify-center gap-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-[13px] font-semibold transition-colors cursor-pointer">
+                      立即询盘
+                      <ArrowRight size={14} />
+                    </button>
+                  </Link>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="mb-7" />
 
           {/* Full-width primary CTA + text secondary */}
           <motion.div
