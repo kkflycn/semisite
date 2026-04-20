@@ -20,7 +20,7 @@ const badges = ["TEL", "TSK", "Teradyne", "Advantest", "Disco"];
 export default function HeroSection() {
   return (
     <section
-      className="relative min-h-[88vh] flex items-start overflow-hidden"
+      className="relative flex items-start overflow-hidden"
       aria-label="品牌主张"
     >
       {/* Background grid */}
