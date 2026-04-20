@@ -26,7 +26,7 @@ No test suite exists. `npm run build` is the primary correctness check — it ru
 ```
 app/                    # Next.js App Router pages
   layout.tsx            # Root layout: fonts, Header, Footer, Organization JSON-LD
-  page.tsx              # Homepage (assembles home/* section components)
+  page.tsx              # Homepage — section order: Hero → FeaturedEquipment → Business → Trust → Services → CTA
   equipment/
     page.tsx            # Equipment list (static, filter logic is client-side)
     [id]/page.tsx       # Equipment detail (generateStaticParams from equipments.ts)
@@ -41,11 +41,23 @@ components/
   ui/                   # shadcn/ui primitives only
 
 data/
-  equipments.ts         # 32 equipment records + getEquipmentById / getFeaturedEquipments helpers
+  equipments.ts         # 31 equipment records + getEquipmentById / getFeaturedEquipments helpers
+
+public/
+  images/equipment/     # Real equipment photos named by ID: {id}.jpg/png/webp
 
 types/
   index.ts              # Equipment, InquiryFormData, EquipmentCategory, CATEGORY_LABELS
 ```
+
+### Hero Carousel (`components/home/HeroSection.tsx`)
+
+The right panel is an auto-rotating carousel built with `AnimatePresence`:
+- Data: `getFeaturedEquipments(5)` — top 5 in-stock + refurbished + inspected items
+- Auto-advances every 5 s via `setInterval`; pauses (`useRef`) on mouse enter
+- Hover also: stops the float animation (framer-motion `animate` switches from repeat loop to `y:0`) and triggers a 4 s CSS Ken Burns zoom (`scale-100 → scale-110`) on the image
+- Clicking the image navigates to `/equipment/{id}` via `next/link`
+- Dot indicators (top-right of card) allow manual jump to any slide
 
 ## Key Constraints
 
@@ -77,6 +89,7 @@ All equipment data lives in `data/equipments.ts` as a typed array. To add/edit e
 - `status`: `"in-stock"` | `"on-order"`
 - `specs`: `{ label: string; value: string }[]`
 - `category` must be one of the 8 values in `EquipmentCategory`
+- `imageUrl`: use `/images/equipment/{id}.{ext}` — real photos live in `public/images/equipment/` (jpg/png/webp). Extensions vary: check the actual file before setting the path.
 
 ## Visual Style Rules
 
