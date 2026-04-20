@@ -29,6 +29,7 @@ const carouselItems = getFeaturedEquipments(5).map((eq) => ({
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
+  const [hovered, setHovered] = useState(false);
   const paused = useRef(false);
 
   useEffect(() => {
@@ -157,16 +158,19 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.15 }}
             className="hidden lg:block relative"
-            onMouseEnter={() => { paused.current = true; }}
-            onMouseLeave={() => { paused.current = false; }}
+            onMouseEnter={() => { paused.current = true; setHovered(true); }}
+            onMouseLeave={() => { paused.current = false; setHovered(false); }}
           >
             {/* Glow */}
             <div className="absolute -inset-6 bg-blue-600/15 blur-3xl rounded-3xl pointer-events-none" />
 
-            {/* Floating wrapper */}
+            {/* Floating wrapper — stops on hover */}
             <motion.div
-              animate={{ y: [0, -14, 0] }}
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+              animate={{ y: hovered ? 0 : [0, -14, 0] }}
+              transition={hovered
+                ? { duration: 0.6, ease: "easeOut" }
+                : { repeat: Infinity, duration: 5, ease: "easeInOut" }
+              }
               className="relative"
             >
               {/* Card */}
@@ -187,14 +191,14 @@ export default function HeroSection() {
                         src={current.src}
                         alt={current.alt}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-[4000ms] ease-out scale-100 group-hover/card:scale-110"
                         priority
                       />
                     </motion.div>
                   </AnimatePresence>
                 </div>
 
-                {/* Dark overlay — brightens slightly on hover to hint clickability */}
+                {/* Dark overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/80 via-transparent to-transparent pointer-events-none transition-opacity duration-300 group-hover/card:opacity-80" />
 
                 {/* Status badge */}
