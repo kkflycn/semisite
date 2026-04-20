@@ -154,7 +154,7 @@ export default function HeroSection() {
               {/* Main equipment image */}
               <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl">
                 <Image
-                  src="https://picsum.photos/seed/wafer-prober-tsk/720/540"
+                  src="/images/equipment/ps-001.jpg"
                   alt="半导体测试设备"
                   width={720}
                   height={540}
