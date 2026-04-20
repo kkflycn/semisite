@@ -26,7 +26,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "TEL P12XL 为 300mm 量产级全自动探针台，适用于存储器、逻辑芯片及功率器件的 Wafer Level Test。本机经过完整电气与机械整备，Chuck 平面度校准完毕，FOUP 装载系统功能正常，可直接对接 ATE 测试机台。",
-    imageUrl: "https://picsum.photos/seed/ps001/800/600",
+    imageUrl: "/images/equipment/ps-001.jpg",
     inquiryNote: "可提供现场演示，支持到厂验机",
   },
 
@@ -53,7 +53,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "TSK UF300 是成熟可靠的 200mm 全自动探针台，广泛应用于模拟 IC、功率 MOSFET 及 MEMS 器件的中道测试。机台整体状态良好，驱动系统经过专项检修，传感器与 Prober 软件已更新至最新版本。",
-    imageUrl: "https://picsum.photos/seed/ps002/800/600",
+    imageUrl: "/images/equipment/ps-002.jpg",
     inquiryNote: "库存现货，可安排工厂参观",
   },
 
@@ -80,7 +80,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Cascade Summit 12000 为高端半自动探针台，具备宽频 RF 测量能力，配合气浮隔振台适合射频器件、化合物半导体及研发型量测场景。机台保存状况极好，光学系统清晰，随机配备原装探针臂4组。",
-    imageUrl: "https://picsum.photos/seed/ps003/800/600",
+    imageUrl: "/images/equipment/ps-003.jpg",
   },
 
   {
@@ -105,7 +105,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "TEL P8 是 8 英寸量产线上广泛部署的成熟机型，性价比突出。本机正在进行整备，预计交付前完成全项电气校准与驱动系统检修，附整备报告与验机记录。",
-    imageUrl: "https://picsum.photos/seed/ps004/800/600",
+    imageUrl: "/images/equipment/ps-004.jpg",
     inquiryNote: "预计整备完成后30天内可发货",
   },
 
@@ -133,7 +133,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Teradyne J750 是业界成熟度极高的中低端混合信号测试平台，覆盖汽车电子、消费类 IC 及工业控制芯片的量产测试。本机配置齐全，IG-XL 授权有效，随机附原厂测试向量库，可协助客户快速完成程序移植。",
-    imageUrl: "https://picsum.photos/seed/te001/800/600",
+    imageUrl: "/images/equipment/te-001.jpg",
     inquiryNote: "提供3个月整机保修，可签署技术服务协议",
   },
 
@@ -159,7 +159,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Advantest T5503 专为大容量存储器测试设计，支持 SRAM、NOR/NAND Flash 等主流存储工艺的量产测试。本机配套原厂 SoC 测试软件，故障存储模块完整，已通过 Advantest 认证工程师的完整功能验证。",
-    imageUrl: "https://picsum.photos/seed/te002/800/600",
+    imageUrl: "/images/equipment/te-002.jpg",
   },
 
   {
@@ -184,7 +184,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Cohu Vanguard IMS 在电源管理 IC 与模拟信号链测试领域具有成本优势，适合中小型封测厂导入量产线。本机保存状态好，系统板与电源模块运行正常，随机提供12个月全面检修报告。",
-    imageUrl: "https://picsum.photos/seed/te003/800/600",
+    imageUrl: "/images/equipment/te-003.png",
   },
 
   {
@@ -209,7 +209,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "华峰测控 STS8200 是国内主流模拟 IC 测试平台，广泛应用于电源管理、运算放大器及传感信号链的量产测试。国产化优势明显，备件本土化供应，售后响应速度快，适合希望降低运营成本的封测产线。",
-    imageUrl: "https://picsum.photos/seed/te004/800/600",
+    imageUrl: "/images/equipment/te-004.png",
     inquiryNote: "提供厂家原厂授权培训支持",
   },
 
@@ -235,7 +235,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "长川科技 CTA8280 定位中等复杂度数字与混合信号测试，适合 MCU、接口芯片及通用逻辑器件的量产环境。国内本土化服务体系完善，备件供货及时，采购周期短。",
-    imageUrl: "https://picsum.photos/seed/te005/800/600",
+    imageUrl: "/images/equipment/te-005.jpg",
     inquiryNote: "可调货，预计交期30天",
   },
 
@@ -264,7 +264,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Disco DFG8560 是 300mm 晶圆减薄的主流选择，广泛用于 DRAM 叠层封装、功率器件及 CMOS 图像传感器背减工序。本机双主轴配置，支持粗磨→精磨→抛光三段工艺，整备后厚度均匀性经实晶验证，TTV < 3μm。",
-    imageUrl: "https://picsum.photos/seed/gr001/800/600",
+    imageUrl: "/images/equipment/gr-001.jpg",
     inquiryNote: "含整备报告与厚度均匀性测试数据",
   },
 
@@ -290,7 +290,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Disco DFG850 是成熟稳定的 8 英寸晶圆减薄机，适用于功率器件、IGBT 及汽车级芯片的背减工序。机台使用历史清晰，主轴轴承与减薄工作台均经过专项大修，随机附前后对比的 TTV 测试报告。",
-    imageUrl: "https://picsum.photos/seed/gr002/800/600",
+    imageUrl: "/images/equipment/gr-002.jpg",
   },
 
   {
@@ -315,7 +315,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "东京精密 PG300RM 在 300mm SiC 功率器件及薄晶圆（TSV）减薄领域具有良好口碑，光学在线测厚系统精度稳定。本机经完整电气与主轴系统大修，研磨工作台平面度经重新校准，可接受实晶试磨后签署合同。",
-    imageUrl: "https://picsum.photos/seed/gr003/800/600",
+    imageUrl: "/images/equipment/gr-003.webp",
   },
 
   {
@@ -340,7 +340,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "冈本 VG502MKII 是 6/8 英寸混线产能的理想选择，性价比高，操作维护简便，适合中小批量功率器件及化合物半导体（GaAs / InP）晶圆的背减工序。整备状态良好，主轴径跳经重新校准 < 0.5μm。",
-    imageUrl: "https://picsum.photos/seed/gr004/800/600",
+    imageUrl: "/images/equipment/gr-004.jpg",
   },
 
   // ─── 划片机 Dicing Saw ────────────────────────────────────────────────────
@@ -369,7 +369,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Disco DAD3220 是当前 300mm 量产线主流划片设备，双主轴设计显著提升产能。本机主轴轴承经大修更换，切割精度验证合格（附测试数据），冷却水路疏通清洁完毕，装载系统运行正常。",
-    imageUrl: "https://picsum.photos/seed/dc001/800/600",
+    imageUrl: "/images/equipment/dc-001.jpg",
     inquiryNote: "可提供到厂试切服务",
   },
 
@@ -396,7 +396,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Disco DAD321 在 8 英寸产线中部署广泛，机台结构紧凑，维护简便。本机经完整整备，主轴转速与振动测试通过原厂标准，切割道对准系统精度恢复至出厂指标，适合 IGBT、功率 MOSFET 等标准封装产品的划切工序。",
-    imageUrl: "https://picsum.photos/seed/dc002/800/600",
+    imageUrl: "/images/equipment/dc-002.jpg",
   },
 
   {
@@ -421,7 +421,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "东京精密 A-WD-300T 在 LED 陶瓷基板、LTCC 多层陶瓷及难切割材料方面具有工艺优势。本机正在调货整备中，预计完成验机后45天内可交付，将随机提供完整的整备与验机报告。",
-    imageUrl: "https://picsum.photos/seed/dc003/800/600",
+    imageUrl: "/images/equipment/dc-003.jpg",
     inquiryNote: "可调货，整备中，交期约45天",
   },
 
@@ -447,7 +447,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Disco DAD2H/6 为早期成熟机型，结构稳定、备件充足，适合 Lead Frame 基板划切、LED 蓝宝石基板及小批量研发切割需求。整备到位，性价比突出，可作为备机或产能补充使用。",
-    imageUrl: "https://picsum.photos/seed/dc004/800/600",
+    imageUrl: "/images/equipment/dc-004.jpg",
   },
 
   // ─── 固晶机 Die Bonder ────────────────────────────────────────────────────
@@ -475,7 +475,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "ASM AD838 在逻辑 IC、功率模块及汽车电子固晶工序中表现成熟，银浆点胶一致性好。本机经过完整电气大修与视觉系统校准，供片机构与顶针系统工作正常，可带料试产验证后签署合同。",
-    imageUrl: "https://picsum.photos/seed/db001/800/600",
+    imageUrl: "/images/equipment/db-001.jpg",
     inquiryNote: "可提供带料试产，支持到厂验机",
   },
 
@@ -501,7 +501,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "BESI Esec 2100 结构紧凑，适用于分立器件、LED 封装及中功率模块的环氧树脂固晶工序。喷射式点胶系统减少了材料浪费，贴片稳定性好。本机已完成全项功能验证，附完整的贴片精度测试报告。",
-    imageUrl: "https://picsum.photos/seed/db002/800/600",
+    imageUrl: "/images/equipment/db-002.jpg",
   },
 
   {
@@ -526,7 +526,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "ASM ALTO 是面向先进封装与高密度集成设计的高精度固晶平台，支持 PoP 堆叠与大尺寸多芯片模组应用。本机来源于客户产线升级置换，使用时间短，机况优良，正在整备验机中，附出厂验收报告。",
-    imageUrl: "https://picsum.photos/seed/db003/800/600",
+    imageUrl: "/images/equipment/db-003.jpg",
     inquiryNote: "可调货，预计交期30天",
   },
 
@@ -552,7 +552,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "BSL DB830 专为功率模块与 SiC 器件的高可靠性固晶工序设计，基板预热系统可有效减少银浆固化应力，适合车载电子模组的生产场景。本机整备到位，含全套工艺参数文件，可对接客户现有产品快速验证。",
-    imageUrl: "https://picsum.photos/seed/db004/800/600",
+    imageUrl: "/images/equipment/db-004.jpg",
   },
 
   // ─── 焊线机 Wire Bonder ───────────────────────────────────────────────────
@@ -581,7 +581,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "ASM EAGLE 60 是业内最成熟的全自动球焊平台之一，广泛应用于 IC 封装量产线。本机配备 Fine Pitch 焊接选件，最小 Pitch 间距可达 40μm，适合高密度 BGA 与 FC-BGA 基板焊接。整备后经过完整 UPH 和精度评估，附 CPK 报告。",
-    imageUrl: "https://picsum.photos/seed/wb001/800/600",
+    imageUrl: "/images/equipment/wb-001.jpg",
     inquiryNote: "可提供 CPK 测试报告，支持带料试产",
   },
 
@@ -608,7 +608,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "K&S Connx 60 专为铜线焊接优化，配套 Forming Gas 保护系统防止铜线氧化，适合大功率分立器件及汽车级 QFN 封装的量产线。本机整备时进行了 Transducer 更换与焊头更换，铜线焊接弧度一致性经实料验证 CPK > 1.67。",
-    imageUrl: "https://picsum.photos/seed/wb002/800/600",
+    imageUrl: "/images/equipment/wb-002.jpg",
   },
 
   {
@@ -633,7 +633,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "新川 UTC-300 以稳定可靠著称，在 TO 封装、DIP 直插与 SOP 小外形封装的金线键合工序中表现出色，机型成熟、备件供应充足。本机运行时间适中，经完整整备后功能验证通过，适合中批量量产或弹性产能配置。",
-    imageUrl: "https://picsum.photos/seed/wb003/800/600",
+    imageUrl: "/images/equipment/wb-003.jpg",
   },
 
   {
@@ -659,7 +659,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Kaijo FB130E 是功率模块铝线（大线）楔焊领域的主流机型，适用于 IGBT 模块、SiC MOSFET 及高电流分立器件的键合工序。超声参数调节精细，粗铝线焊接强度稳定。本机整备后推拉力测试合格（附测试数据）。",
-    imageUrl: "https://picsum.photos/seed/wb004/800/600",
+    imageUrl: "/images/equipment/wb-004.jpg",
     inquiryNote: "附整备记录与推拉力测试报告",
   },
 
@@ -685,7 +685,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "BESI Esec 3100 支持铜线与钯铜（Pd-Cu）线的球焊工艺，适合对成本敏感的高密度 IC 封装产线。本机正在调货中，预计整备完成后30天交付，将随机提供完整整备与验机文件。",
-    imageUrl: "https://picsum.photos/seed/wb005/800/600",
+    imageUrl: "/images/equipment/wb-005.jpg",
     inquiryNote: "可调货，预计交期30天，整备中",
   },
 
@@ -714,7 +714,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "TOWA Y-1 是 MAP 塑封工艺的主流机型，适合 BGA、QFN、LGA 等阵列封装形式的批量生产。本机模具夹持系统经过专项检修，温控系统精度验证合格，注塑压力重复性稳定。随机提供原厂工艺参数数据库。",
-    imageUrl: "https://picsum.photos/seed/mo001/800/600",
+    imageUrl: "/images/equipment/mo-001.jpg",
     inquiryNote: "可随机配套模具（需说明产品规格）",
   },
 
@@ -740,7 +740,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "ASM AP-600 适用于传统引线框架封装的 Transfer Molding 工艺，覆盖 QFP、DIP、SOP 及 TO 系列封装形式。合模力充足，温度均匀性好，适合追求产品质量稳定性的大批量生产场景。整备与模具清洗均已完成，可快速投产。",
-    imageUrl: "https://picsum.photos/seed/mo002/800/600",
+    imageUrl: "/images/equipment/mo-002.jpg",
   },
 
   // ─── 其他 Other ───────────────────────────────────────────────────────────
@@ -768,7 +768,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Sonoscan D9600 是封装失效分析与质量控制的核心工具，可无损检测焊接空洞、分层、裂纹等内部缺陷，广泛应用于 BGA、Flip Chip、IGBT 模块及 SiP 模组的来料与过程检测。机台保存良好，配套3支探头（30/75/230MHz），软件授权完整。",
-    imageUrl: "https://picsum.photos/seed/ot001/800/600",
+    imageUrl: "/images/equipment/ot-001.jpg",
     inquiryNote: "含三频段探头套装及 SonoWare 软件授权",
   },
 
@@ -795,7 +795,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Nordson DAGE Series 4000 Plus 是焊线 Bond Test 与芯片粘接剪切力测试的行业标准设备，广泛用于 QA/QC 与失效分析实验室。多量程模块切换方便，SPC 实时分析功能满足 IATF 16949 与 AEC-Q100 可靠性要求。机台状态优良，含推力、拉力、剪切三套工装。",
-    imageUrl: "https://picsum.photos/seed/ot002/800/600",
+    imageUrl: "/images/equipment/ot-002.jpg",
     inquiryNote: "含推力/拉力/剪切三套工装",
   },
 
@@ -821,7 +821,7 @@ export const equipments: Equipment[] = [
     ],
     description:
       "Nordson DAGE XD7600NT 支持 BGA 焊点空洞率、桥接及缺焊的 2D/斜面 X-Ray 检测，是封装品质管控与失效分析的重要设备。微焦点模式可实现亚微米级分辨率，适合先进封装与高可靠性器件的在线或抽检场景。本机正调货，随机附完整验机报告。",
-    imageUrl: "https://picsum.photos/seed/ot003/800/600",
+    imageUrl: "/images/equipment/ot-003.jpg",
     inquiryNote: "可调货，预计交期45天",
   },
 ];
