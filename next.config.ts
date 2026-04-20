@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
   basePath: isProd ? "/semisite" : "",
   allowedDevOrigins: ["172.23.122.221"],
   images: {
-    unoptimized: true,
+    loader: "custom",
+    loaderFile: "./imageLoader.ts",
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
